@@ -2,9 +2,8 @@ package guru.sfg.beer.inventory.service.services;
 
 import guru.sfg.beer.inventory.service.config.JMSConfig;
 import guru.sfg.beer.inventory.service.domain.BeerInventory;
-import guru.sfg.brewery.model.BeerDto;
-import guru.sfg.brewery.model.events.NewInventoryEvent;
 import guru.sfg.beer.inventory.service.repositories.BeerInventoryRepository;
+import guru.sfg.brewery.model.BeerDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
@@ -22,8 +21,8 @@ public class BrewingServiceListner {
 
     @JmsListener(destination = JMSConfig.NEW_INVENTORY_QUEUE)
     @Transactional
-    public void listen(NewInventoryEvent newInventoryEvent){
-        BeerDto beerDto = newInventoryEvent.getBeerDto();
+    public void listen(BeerDto beerDto){
+
         BeerInventory beerInventory = BeerInventory.builder()
                 .beerId(beerDto.getId())
                 .quantityOnHand(beerDto.getQuantityOnHand())
