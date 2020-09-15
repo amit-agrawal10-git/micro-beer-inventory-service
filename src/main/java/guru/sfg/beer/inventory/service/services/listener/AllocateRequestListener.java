@@ -23,12 +23,15 @@ public class AllocateRequestListener {
     public void listen(BeerOrderDto beerOrderDto){
         AllocationResult.AllocationResultBuilder allocationResultBuilder = AllocationResult.builder();
         allocationResultBuilder.beerOrderDto(beerOrderDto);
+        Boolean errorOccurred = false;
         try{
             Boolean allocationResult = allocationService.allocateOrder(beerOrderDto);
                 allocationResultBuilder.partialAllocation(allocationResult);
         } catch (Exception e){
             log.error(e.getMessage(),e);
-            allocationResultBuilder.errorOccurred(true);
+            errorOccurred = true;
+        } finally {
+            allocationResultBuilder.errorOccurred(errorOccurred);
         }
 
         log.debug("Order Id: "+beerOrderDto.getId());
