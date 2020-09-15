@@ -66,4 +66,21 @@ public class AllocationServiceImpl implements AllocationService {
         });
 
     }
+
+    @Override
+    public void deallocateOrder(BeerOrderDto beerOrderDto) {
+        Boolean result = true;
+        beerOrderDto.getBeerOrderLines().stream().filter(x -> x.getQuantityAllocated() !=0 )
+                .forEach( orderLine -> {
+
+            BeerInventory beerInventory = BeerInventory.builder()
+                    .beerId(orderLine.getBeerId())
+                    .quantityOnHand(orderLine.getQuantityAllocated())
+                    .upc(orderLine.getUpc())
+                    .build();
+
+            beerInventoryRepository.save(beerInventory);
+        });
+    }
+
 }

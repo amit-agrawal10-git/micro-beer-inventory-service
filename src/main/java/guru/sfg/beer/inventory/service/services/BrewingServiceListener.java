@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class BrewingServiceListner {
+public class BrewingServiceListener {
 
     private final BeerInventoryRepository beerInventoryRepository;
     private final JmsTemplate jmsTemplate;
