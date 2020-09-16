@@ -24,7 +24,6 @@ public class BrewingServiceListener {
     public void listen(BeerDto beerDto){
 
         BeerInventory beerInventory = BeerInventory.builder()
-                .beerId(beerDto.getId())
                 .quantityOnHand(beerDto.getQuantityOnHand())
                 .upc(beerDto.getUpc())
                 .build();
