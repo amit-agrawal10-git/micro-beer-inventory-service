@@ -8,7 +8,9 @@
             <artifactId>spring-mvc-bom</artifactId>
             <version>1.0-SNAPSHOT</version>
         </parent>
-
+    <properties>
+        <docker.image.prefix>beerworks</docker.image.prefix>
+    </properties>
     <groupId>com.github.amag</groupId>
     <artifactId>micro-beer-inventory-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
