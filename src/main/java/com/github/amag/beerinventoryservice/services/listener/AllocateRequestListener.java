@@ -25,7 +25,7 @@ public class AllocateRequestListener {
         Boolean errorOccurred = false;
         try{
             Boolean allocationResult = allocationService.allocateOrder(beerOrderDto);
-                allocationResultBuilder.partialAllocation(allocationResult);
+                allocationResultBuilder.partialAllocation(!allocationResult);
         } catch (Exception e){
             log.error(e.getMessage(),e);
             errorOccurred = true;
